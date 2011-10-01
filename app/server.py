@@ -25,8 +25,7 @@ class ClockConnection(tornadio.SocketConnection):
 
     def on_message(self, message):
         n = datetime.now().strftime('%H:%M:%S')
-        for p in self.members:
-            p.send(n)
+        self.send(n)
 
     def on_close(self):
         self.members.remove(self)
